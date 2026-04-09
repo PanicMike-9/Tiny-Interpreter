@@ -3,12 +3,12 @@
 
 enum class TokenType
 {
-   VARIABLE,
    IDENT,
    ASSIGN,
    NUMBER,
    PLUS,
    MINUS,
+   MULTIPLY,
 };
 
 struct Token
