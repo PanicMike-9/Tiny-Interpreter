@@ -2,6 +2,18 @@
 
 A tiny interpreter written in **C++** to learn fundamentals of compilers.
 
-## Abilities
-- *Lexer*
-- *Parser*
+## Features
+- *Tokenization* (Lexer) 
+- Basic *parsing* expressions
+
+## Structure
+- `token.hpp` - Token definitions
+- `lexer.cpp/hpp` - Converts input to tokens
+- `parser.cpp/hpp` - Parses expressions
+
+## Project Outcomes
+- Build an interpreter from scratch
+- Learn compiler design concepts:
+  * Lexer
+  * Parser
+  * Abstract Syntax Tree (AST)
