@@ -1,0 +1,9 @@
+# C++ files
+*.o
+*.obj
+
+# Compiled Binaries
+tc
+
+# Neovim Temporary files
+*.swp
