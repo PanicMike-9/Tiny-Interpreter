@@ -1,5 +1,4 @@
 #include "lexer.hpp"
-#include <iostream>
 
 std::vector<Token> tokenize(const std::string& input)
 {
@@ -19,7 +18,7 @@ std::vector<Token> tokenize(const std::string& input)
 
         else if(isalpha(current_char))
         {
-            std::cout << "is alpha\n";
+            tokens.push_back({TokenType::IDENT});
         }
 
         else if(isdigit(current_char))
