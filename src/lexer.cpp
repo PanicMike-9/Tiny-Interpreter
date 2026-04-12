@@ -2,6 +2,7 @@
 
 std::vector<Token> tokenize(const std::string& input)
 {
+    // hold all tokens
     std::vector<Token> tokens; 
 
     int i = 0;
@@ -16,11 +17,13 @@ std::vector<Token> tokenize(const std::string& input)
             continue;
         }
 
+        // check alphabet
         else if(isalpha(current_char))
         {
             tokens.push_back({TokenType::IDENT});
         }
 
+        // check number/digit
         else if(isdigit(current_char))
         {
             int start = i;
@@ -35,21 +38,25 @@ std::vector<Token> tokenize(const std::string& input)
             continue;
         }
 
+        // check plus sign
         else if(current_char == '+')
         {
             tokens.push_back({TokenType::PLUS, "+"});
         }
 
+        // check minus sign
         else if(current_char == '-')
         {
             tokens.push_back({TokenType::MINUS, "-"});
         }
 
+        // check multiply sign
         else if(current_char == '*')
         {
             tokens.push_back({TokenType::MULTIPLY, "*"});
         }
 
+        // check assign
         else if(current_char == '=')
         {
             tokens.push_back({TokenType::ASSIGN, "="});
