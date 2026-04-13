@@ -31,7 +31,7 @@ std::vector<Token> tokenize(const std::string& input)
             continue;
         }
 
-        // check number/digit
+        // check digit
         else if(isdigit(current_char))
         {
             int start = i;
