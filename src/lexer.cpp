@@ -2,7 +2,7 @@
 
 std::vector<Token> tokenize(const std::string& input)
 {
-    // hold all tokens
+    // store all tokens
     std::vector<Token> tokens; 
 
     int i = 0;
@@ -20,7 +20,15 @@ std::vector<Token> tokenize(const std::string& input)
         // check alphabet
         else if(isalpha(current_char))
         {
-            tokens.push_back({TokenType::IDENT});
+            int start = i;
+
+            while(i < input.size() && isalpha(input[i]))
+                i++;
+            
+            std::string identifier = input.substr(start, i - start);
+            tokens.push_back({TokenType::IDENT, identifier});
+
+            continue;
         }
 
         // check number/digit
