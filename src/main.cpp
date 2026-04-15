@@ -7,10 +7,10 @@ int main()
 {
     std::string input = "val = val1 + 1";
 
-    std::vector<Token> token = tokenize(input);
+    std::vector<Token> token_vec = tokenize(input);
 
-    for(const auto& tokens : token)
+    for(const auto& token_output : token_vec)
     {
-        std::cout << tokens.value << ' ';
+        std::cout << token_output.value << ' ';
     }
 }
