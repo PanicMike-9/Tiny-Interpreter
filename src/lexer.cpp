@@ -18,11 +18,11 @@ std::vector<Token> tokenize(const std::string& input)
         }
 
         // check alphabet
-        else if(isalpha(current_char))
+        else if(isalnum(current_char))
         {
             int start = i;
 
-            while(i < input.size() && isalpha(input[i]))
+            while(i < input.size() && isalnum(input[i]))
                 i++;
             
             std::string identifier = input.substr(start, i - start);
