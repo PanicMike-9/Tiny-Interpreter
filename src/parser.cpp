@@ -1,25 +1,33 @@
 #include "parser.hpp"
+#include <iostream>
 
 void parser(const std::vector<Token> &tokens)
 {
     int i = 0;
-    Token current_token = tokens[i];
 
     while(i < tokens.size())
     {
+        Token current_token = tokens[i];
+
+        if(current_token.token == TokenType::IDENT)
+        {
+        }
+        else if(current_token.token == TokenType::ASSIGN)
+        {
+        }
+        else if(current_token.token == TokenType::NUMBER)
+        {
+        }
+        else if(current_token.token == TokenType::PLUS)
+        {
+        }
+
+        std::cout << " " << current_token.value << " ";
+
+        i++;
     }
-//    for(auto t : tokens)
-//    {
-//        if(t.token == TokenType::IDENT) i++;
-//
-//        if(t.token == TokenType::ASSIGN) i++;
-//
-//        if(t.token == TokenType::NUMBER) i++;
-//
-//        if(t.token == TokenType::PLUS) i++;
-//
-//        if(t.token == TokenType::NUMBER) i++;
-//    }
+
+    std::cout << '\n';
 }
 
 

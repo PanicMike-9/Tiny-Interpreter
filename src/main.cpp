@@ -1,16 +1,9 @@
-#include "lexer.hpp"
-#include <iostream>
+#include "parser.hpp"
 #include <vector>
-#include <string>
 
 int main()
 {
-    std::string input = "val = val1 + 1";
+    std::vector<Token> input_tokens{ {TokenType::IDENT, "val"}, {TokenType::ASSIGN, "="}, {TokenType::NUMBER, "10"}, {TokenType::PLUS, "+"}, {TokenType::NUMBER, "20"} };
 
-    std::vector<Token> token_vec = tokenize(input);
-
-    for(const auto& token_output : token_vec)
-    {
-        std::cout << token_output.value << ' ';
-    }
+    parser(input_tokens);
 }
