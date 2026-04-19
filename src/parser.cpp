@@ -10,6 +10,8 @@ void parser(const std::vector<Token> &tokens)
     std::string num_str;
 
     int number = 0;
+    int left   = 0;
+    int right  = 0;
 
     while(i < tokens.size())
     {
