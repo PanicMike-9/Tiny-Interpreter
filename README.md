@@ -14,6 +14,6 @@ A tiny interpreter written in **C++** to learn fundamentals of compilers.
 ## Project Goals
 - Build an interpreter from scratch
 - Learn compiler design concepts:
-  * Lexer
-  * Parser
-  * Abstract Syntax Tree (AST)
+  * Lexer **(WIP)**
+  * Parser **(WIP)**
+  * Abstract Syntax Tree **(WIP)**
