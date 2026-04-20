@@ -10,7 +10,9 @@ int main()
                                      {TokenType::PLUS, "+"}, 
                                      {TokenType::NUMBER, "7"},
                                      {TokenType::PLUS, "+"}, 
-                                     {TokenType::NUMBER, "10"} 
+                                     {TokenType::NUMBER, "10"},
+                                     {TokenType::MINUS, "-"}, 
+                                     {TokenType::NUMBER, "5"} 
                                    };
 
     parser(input_tokens);

@@ -19,11 +19,13 @@ void parser(const std::vector<Token> &tokens)
     {
         Token current_token = tokens[i];
 
+        // detect identifier(IDENT)
         if(current_token.token == TokenType::IDENT) 
         {
             variable = current_token.value;
         }
 
+        // detect digit(NUMBER)
         else if(current_token.token == TokenType::NUMBER)
         {
             num_str = current_token.value;
@@ -32,6 +34,7 @@ void parser(const std::vector<Token> &tokens)
             else right = std::stoi(num_str);
         }
 
+        // apply plus(+) operator logic
         else if(current_token.token == TokenType::PLUS)
         {
             current_op = TokenType::PLUS;
@@ -43,6 +46,19 @@ void parser(const std::vector<Token> &tokens)
             right = std::nullopt; // reset right for next values
         }
 
+        // apply minus(-) operator logic
+        else if(current_token.token == TokenType::MINUS)
+        {
+            current_op = TokenType::MINUS;
+        }
+
+        if(left && right && current_op == TokenType::MINUS)
+        {
+            *left -= *right;
+            right = std::nullopt; // rest right for next values
+        }
+
+        // apply assign(=) operator
         else if(current_token.token == TokenType::ASSIGN) {}
 
         //std::cout << " " << current_token.value << " ";
