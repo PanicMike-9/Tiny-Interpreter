@@ -53,11 +53,10 @@ void parser(const std::vector<Token> &tokens)
             current_op = TokenType::MINUS;
         }
 
-        // check operator and compute logic
         if(left && right && current_op == TokenType::MINUS)
         {
             *left -= *right;
-            right = std::nullopt; // rest right for next values
+            right = std::nullopt; 
         }
 
         // apply multiply(*) operator logic
@@ -66,11 +65,22 @@ void parser(const std::vector<Token> &tokens)
             current_op = TokenType::MULTIPLY;
         }
 
-        // check operator and compute logic
         if(left && right && current_op == TokenType::MULTIPLY)
         {
             *left *= *right;
-            right = std::nullopt; // rest right for next values
+            right = std::nullopt; 
+        }
+
+        // apply division(/) operator logic
+        else if(current_token.token == TokenType::DIVIDE)
+        {
+            current_op = TokenType::DIVIDE;
+        }
+
+        if(left && right && current_op == TokenType::DIVIDE)
+        {
+            *left /= *right;
+            right = std::nullopt; 
         }
 
         // apply assign(=) operator
