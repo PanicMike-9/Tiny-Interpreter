@@ -13,7 +13,11 @@ int main()
                                      {TokenType::MINUS, "-"}, 
                                      {TokenType::NUMBER, "5"},
                                      {TokenType::MULTIPLY, "*"},
-                                     {TokenType::NUMBER, "5"}
+                                     {TokenType::NUMBER, "5"},
+                                     {TokenType::DIVIDE, "/"},
+                                     {TokenType::NUMBER, "3"},
+                                     {TokenType::MULTIPLY, "*"},
+                                     {TokenType::NUMBER, "2"},
                                    };
 
     parser(input_tokens);
