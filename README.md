@@ -15,5 +15,5 @@ A tiny interpreter written in **C++** to learn fundamentals of compilers.
 - Build an interpreter from scratch
 - Learn compiler design concepts:
   * Lexer **(WIP)**
-  * Parser **(WIP)**
+  * Parser: Linear calculations, working on building **Precedence** using PEMDAS method
   * Abstract Syntax Tree **(WIP)**
