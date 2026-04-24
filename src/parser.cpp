@@ -25,6 +25,7 @@ void parser(const std::vector<Token> &tokens)
             variable = current_token.value;
         }
 
+
         // detect digit(NUMBER)
         else if(current_token.token == TokenType::NUMBER)
         {
@@ -89,7 +90,7 @@ void parser(const std::vector<Token> &tokens)
         i++;
     }
 
-    std::cout << variable << '=' << *left;
+    std::cout << variable << " = " << *left;
     std::cout << '\n';
 }
 
