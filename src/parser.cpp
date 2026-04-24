@@ -91,6 +91,7 @@ void parser(const std::vector<Token> &tokens)
         i++;
     }
 
+    std::cout << '\n';
     std::cout << variable << " = " << *left;
     std::cout << '\n';
 }
