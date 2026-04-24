@@ -3,7 +3,7 @@
 
 int main()
 {
-    std::vector<Token> input_tokens{ {TokenType::IDENT, "val"}, 
+    std::vector<Token> input_token1{ {TokenType::IDENT, "val1"}, 
                                      {TokenType::ASSIGN, "="}, 
                                      {TokenType::NUMBER, "3"}, 
                                      {TokenType::PLUS, "+"}, 
@@ -20,5 +20,13 @@ int main()
                                      {TokenType::NUMBER, "2"},
                                    };
 
-    parser(input_tokens);
+    std::vector<Token> input_token2{ {TokenType::IDENT, "val2"}, 
+                                     {TokenType::ASSIGN, "="},
+                                     {TokenType::NUMBER, "5"},
+                                     {TokenType::MULTIPLY, "*"},
+                                     {TokenType::NUMBER, "250"},
+                                    };
+
+    parser(input_token1); // val1 = 50
+    parser(input_token2); // val2 = 1250
 }
