@@ -89,6 +89,8 @@ void parser(const std::vector<Token> &tokens)
         // output each token
         std::cout << current_token.value << " ";
 
+        /* TODO: Add Precedence using the PEMDAS method*/
+
         i++;
     }
 
