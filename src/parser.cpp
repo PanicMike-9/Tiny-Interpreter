@@ -86,6 +86,7 @@ void parser(const std::vector<Token> &tokens)
         // apply assign(=) operator
         else if(current_token.token == TokenType::ASSIGN) {}
 
+        // output each token
         std::cout << current_token.value << " ";
 
         i++;
