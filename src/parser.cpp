@@ -3,6 +3,18 @@
 #include <string>
 #include <optional>
 
+void parse_factor()
+{
+}
+
+void parse_term()
+{
+}
+
+void parse_expression()
+{
+}
+
 void parser(const std::vector<Token> &tokens)
 {
     int i = 0;
@@ -98,4 +110,5 @@ void parser(const std::vector<Token> &tokens)
     std::cout << variable << " = " << *left;
     std::cout << '\n';
 }
+
 
