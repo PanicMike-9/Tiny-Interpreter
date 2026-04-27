@@ -3,7 +3,7 @@
 #include "token.hpp"
 #include <vector>
 
-void parse_factor();
+int parse_factor();
 void parse_term();
 void parse_expression();
 
