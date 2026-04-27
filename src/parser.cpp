@@ -3,8 +3,22 @@
 #include <string>
 #include <optional>
 
-void parse_factor()
+int i = 0; 
+
+int parse_factor(const std::vector<Token> &tokens)
 {
+    if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input in factor()");
+
+    const Token& current_token = tokens[i];
+
+    if(current_token.token == TokenType::NUMBER)
+    {
+        int number = std::stoi(current_token.value);
+        i++;
+        return number;
+    }
+
+    throw std::runtime_error("Expected NUMBER in factor()");
 }
 
 void parse_term()
