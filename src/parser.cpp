@@ -5,7 +5,7 @@
 
 int i = 0; 
 
-int parse_factor(const std::vector<Token> &tokens)
+int factor(const std::vector<Token> &tokens)
 {
     // size mismatch error
     if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input in factor()");
@@ -24,11 +24,11 @@ int parse_factor(const std::vector<Token> &tokens)
     throw std::runtime_error("Unxpected value(not NUMBER) in factor()");
 }
 
-void parse_term()
+void term()
 {
 }
 
-void parse_expression()
+void expression()
 {
 }
 
