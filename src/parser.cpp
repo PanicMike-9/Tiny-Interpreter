@@ -21,7 +21,7 @@ int factor(const std::vector<Token> &tokens)
     }
 
     // error if the value is wrong
-    throw std::runtime_error("Unxpected value(not NUMBER) in factor()");
+    throw std::runtime_error("Unxpected value is not a NUMBER) in factor()");
 }
 
 void term()
