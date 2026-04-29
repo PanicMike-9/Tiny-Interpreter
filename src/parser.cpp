@@ -3,12 +3,13 @@
 #include <string>
 #include <optional>
 
+// global i, used for all functions
 int i = 0; 
 
-int factor(const std::vector<Token> &tokens)
+int factor(const std::vector<Token>& tokens)
 {
     // size mismatch error
-    if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input in factor()");
+    if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input in factor()\n");
 
     const Token& current_token = tokens[i];
 
@@ -21,15 +22,59 @@ int factor(const std::vector<Token> &tokens)
     }
 
     // error if the value is wrong
-    throw std::runtime_error("Unxpected value is not a NUMBER) in factor()");
+    throw std::runtime_error("Unxpected value is not a NUMBER in factor()\n");
 }
 
-void term()
+int term(const std::vector<Token>& tokens)
 {
+    if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input\n");
+
+    int left = factor(tokens);
+
+    while(i < tokens.size() && (tokens[i].token == TokenType::MULTIPLY || tokens[i].token == TokenType::DIVIDE))
+    {
+        TokenType current_op = tokens[i].token;
+        i++;
+
+        int right = factor(tokens);
+
+        if(current_op == TokenType::MULTIPLY)
+        {
+            left *= right;
+        }
+        else if(current_op == TokenType::DIVIDE)
+        {
+            left /= right;
+        }
+    }
+
+    return left;
 }
 
-void expression()
+int expression(const std::vector<Token>& tokens)
 {
+    if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input\n");
+
+    int left = term(tokens);
+
+    while(i < tokens.size() && (tokens[i].token == TokenType::PLUS || tokens[i].token == TokenType::MINUS))
+    {
+        TokenType current_op = tokens[i].token;
+        i++;
+
+        int right = term(tokens);
+
+        if(current_op == TokenType::PLUS)
+        {
+            left += right;
+        }
+        else if(current_op == TokenType::MINUS)
+        {
+            left -= right;
+        }
+    }
+
+    return left;
 }
 
 void parser(const std::vector<Token> &tokens)
@@ -59,7 +104,7 @@ void parser(const std::vector<Token> &tokens)
         {
             num_str = current_token.value;
 
-            if(!left) left = std::stoi(num_str);
+            if(!left.has_value()) left = std::stoi(num_str);
             else right = std::stoi(num_str);
         }
 
