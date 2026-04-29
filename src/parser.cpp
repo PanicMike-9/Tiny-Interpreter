@@ -6,6 +6,7 @@
 // global i, used for all functions
 int i = 0; 
 
+// return NUMBER 
 int factor(const std::vector<Token>& tokens)
 {
     // size mismatch error
@@ -25,6 +26,7 @@ int factor(const std::vector<Token>& tokens)
     throw std::runtime_error("Unxpected value is not a NUMBER in factor()\n");
 }
 
+// calculate multiplication and division logic
 int term(const std::vector<Token>& tokens)
 {
     if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input\n");
@@ -51,6 +53,7 @@ int term(const std::vector<Token>& tokens)
     return left;
 }
 
+// calculate addition and subtraction logic
 int expression(const std::vector<Token>& tokens)
 {
     if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input\n");
