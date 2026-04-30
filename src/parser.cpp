@@ -1,7 +1,6 @@
 #include "parser.hpp"
 #include <iostream>
 #include <string>
-#include <optional>
 
 // global i, used for all functions
 int i = 0; 
@@ -82,96 +81,24 @@ int expression(const std::vector<Token>& tokens)
 
 void parse(const std::vector<Token> &tokens)
 {
-    int i = 0;
+    i = 0; // reset i
 
-    std::string variable;
-    std::string num_str;
+    if(tokens[i].token != TokenType::IDENT) 
+        throw std::runtime_error("Expected variable");
 
-    std::optional<int> left;
-    std::optional<int> right;
+    // set variable
+    std::string variable = tokens[i].value;
+    i++;
 
-    TokenType current_op;
+    if(tokens[i].token != TokenType::ASSIGN) 
+        throw std::runtime_error("Expected =");
 
-    while(i < tokens.size())
-    {
-        const Token& current_token = tokens[i];
+    i++; // after assign move to next token
 
-        // detect identifier(IDENT)
-        if(current_token.token == TokenType::IDENT) 
-        {
-            variable = current_token.value;
-        }
+    int value = expression(tokens);
 
-        // detect digit(NUMBER)
-        else if(current_token.token == TokenType::NUMBER)
-        {
-            num_str = current_token.value;
-
-            if(!left.has_value()) left = std::stoi(num_str);
-            else right = std::stoi(num_str);
-        }
-
-        // apply plus(+) operator logic
-        else if(current_token.token == TokenType::PLUS)
-        {
-            current_op = TokenType::PLUS;
-        }
-
-        // check operator and compute logic
-        if(left && right && current_op == TokenType::PLUS)
-        {
-            *left += *right;
-            right = std::nullopt; // reset right for next values
-        }
-
-        // apply minus(-) operator logic
-        else if(current_token.token == TokenType::MINUS)
-        {
-            current_op = TokenType::MINUS;
-        }
-
-        if(left && right && current_op == TokenType::MINUS)
-        {
-            *left -= *right;
-            right = std::nullopt; 
-        }
-
-        // apply multiply(*) operator logic
-        else if(current_token.token == TokenType::MULTIPLY)
-        {
-            current_op = TokenType::MULTIPLY;
-        }
-
-        if(left && right && current_op == TokenType::MULTIPLY)
-        {
-            *left *= *right;
-            right = std::nullopt; 
-        }
-
-        // apply division(/) operator logic
-        else if(current_token.token == TokenType::DIVIDE)
-        {
-            current_op = TokenType::DIVIDE;
-        }
-
-        if(left && right && current_op == TokenType::DIVIDE)
-        {
-            *left /= *right;
-            right = std::nullopt; 
-        }
-
-        // apply assign(=) operator
-        else if(current_token.token == TokenType::ASSIGN) {}
-
-        // output each token
-        std::cout << current_token.value << " ";
-
-        i++;
-    }
-
-    std::cout << '\n';
-    std::cout << variable << " = " << *left;
-    std::cout << '\n';
+    // output variable token and final value
+    std::cout << variable << " = " << value << " ";
 }
 
 
