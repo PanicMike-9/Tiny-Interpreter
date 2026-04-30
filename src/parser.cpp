@@ -36,7 +36,7 @@ int term(const std::vector<Token>& tokens)
     while(i < tokens.size() && (tokens[i].token == TokenType::MULTIPLY || tokens[i].token == TokenType::DIVIDE))
     {
         TokenType current_op = tokens[i].token;
-        i++;
+        i++; // move to next token
 
         int right = factor(tokens);
 
@@ -63,7 +63,7 @@ int expression(const std::vector<Token>& tokens)
     while(i < tokens.size() && (tokens[i].token == TokenType::PLUS || tokens[i].token == TokenType::MINUS))
     {
         TokenType current_op = tokens[i].token;
-        i++;
+        i++; // move to next token
 
         int right = term(tokens);
 
@@ -80,7 +80,7 @@ int expression(const std::vector<Token>& tokens)
     return left;
 }
 
-void parser(const std::vector<Token> &tokens)
+void parse(const std::vector<Token> &tokens)
 {
     int i = 0;
 
