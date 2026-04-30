@@ -1,6 +1,5 @@
 #include "parser.hpp"
 #include <vector>
-#include <iostream>
 
 int main()
 {
@@ -26,22 +25,12 @@ int main()
                                      {TokenType::NUMBER, "5"},
                                      {TokenType::MULTIPLY, "*"},
                                      {TokenType::NUMBER, "250"},
+                                     {TokenType::DIVIDE, "/"},
+                                     {TokenType::NUMBER, "10"},
                                     };
     
-    // test precendence separately
-    std::vector<Token> exp_input { {TokenType::NUMBER, "2"},
-                                   {TokenType::PLUS, "+"},
-                                   {TokenType::NUMBER, "3"},
-                                   {TokenType::MULTIPLY, "*"},
-                                   {TokenType::NUMBER, "4"},
-                                   {TokenType::MULTIPLY, "*"},
-                                   {TokenType::NUMBER, "5"}
-                                 };
 
-    int i = 0;
-    int result = expression(exp_input);
-    std::cout << result << '\n';
+    parse(input_token1); // before precedence: val1 = 50 after precedence: val1 = 4
+    parse(input_token2); 
 
-//    parser(input_token1); // val1 = 50
-//    parser(input_token2); // val2 = 1250
 }
