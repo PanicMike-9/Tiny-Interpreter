@@ -11,25 +11,13 @@ std::vector<Token> tokenize(const std::string& input)
     {
         char current_char = input[i];
 
-        if(current_char == ' ') 
+        if(isspace(current_char)) 
         {
             i++;
             continue;
         }
 
-        // check alphabet
-        else if(isalnum(current_char))
-        {
-            int start = i;
-
-            while(i < input.size() && isalnum(input[i]))
-                i++;
-            
-            std::string identifier = input.substr(start, i - start);
-            tokens.push_back({TokenType::IDENT, identifier});
-
-            continue;
-        }
+        // -- Always check digit first -- //
 
         // check digit
         else if(isdigit(current_char))
@@ -41,33 +29,63 @@ std::vector<Token> tokenize(const std::string& input)
 
             std::string number_string = input.substr(start, i - start);
 
-            tokens.push_back({TokenType::NUMBER, number_string});
+            tokens.push_back( {TokenType::NUMBER, number_string} );
 
+            continue;
+        }
+
+        // check alphabet and digits
+        else if(isalnum(current_char))
+        {
+            int start = i;
+
+            while(i < input.size() && isalnum(input[i]))
+                i++;
+            
+            std::string identifier = input.substr(start, i - start);
+            tokens.push_back( {TokenType::IDENT, identifier} );
+
+            continue;
+        }
+
+        // check assign
+        else if(current_char == '=')
+        {
+            tokens.push_back( {TokenType::ASSIGN, "="} );
+            i++;
             continue;
         }
 
         // check plus sign
         else if(current_char == '+')
         {
-            tokens.push_back({TokenType::PLUS, "+"});
+            tokens.push_back( {TokenType::PLUS, "+"} );
+            i++;
+            continue;
         }
 
         // check minus sign
         else if(current_char == '-')
         {
-            tokens.push_back({TokenType::MINUS, "-"});
+            tokens.push_back( {TokenType::MINUS, "-"} );
+            i++;
+            continue;
         }
 
         // check multiply sign
         else if(current_char == '*')
         {
-            tokens.push_back({TokenType::MULTIPLY, "*"});
+            tokens.push_back( {TokenType::MULTIPLY, "*"} );
+            i++;
+            continue;
         }
 
-        // check assign
-        else if(current_char == '=')
+        // check divide sign
+        else if(current_char == '/')
         {
-            tokens.push_back({TokenType::ASSIGN, "="});
+            tokens.push_back( {TokenType::DIVIDE, "/"} );
+            i++;
+            continue;
         }
 
         i++;
