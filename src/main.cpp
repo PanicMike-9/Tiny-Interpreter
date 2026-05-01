@@ -1,36 +1,23 @@
 #include "parser.hpp"
+#include "lexer.hpp"
 #include <vector>
+#include <string>
+#include <iostream>
 
 int main()
 {
-    std::vector<Token> input_token1{ {TokenType::IDENT, "val1"}, 
-                                     {TokenType::ASSIGN, "="}, 
-                                     {TokenType::NUMBER, "3"}, 
-                                     {TokenType::PLUS, "+"}, 
-                                     {TokenType::NUMBER, "7"},
-                                     {TokenType::PLUS, "+"}, 
-                                     {TokenType::NUMBER, "10"},
-                                     {TokenType::MINUS, "-"}, 
-                                     {TokenType::NUMBER, "5"},
-                                     {TokenType::MULTIPLY, "*"},
-                                     {TokenType::NUMBER, "5"},
-                                     {TokenType::DIVIDE, "/"},
-                                     {TokenType::NUMBER, "3"},
-                                     {TokenType::MULTIPLY, "*"},
-                                     {TokenType::NUMBER, "2"},
-                                   };
-
-    std::vector<Token> input_token2{ {TokenType::IDENT, "val2"}, 
-                                     {TokenType::ASSIGN, "="},
-                                     {TokenType::NUMBER, "5"},
-                                     {TokenType::MULTIPLY, "*"},
-                                     {TokenType::NUMBER, "250"},
-                                     {TokenType::DIVIDE, "/"},
-                                     {TokenType::NUMBER, "10"},
-                                    };
+    std::string input1 = "val1 = 5 + 10 * 2 / 5";
+    std::vector<Token> token1 = tokenize(input1);
     
+    // debugging to check correct token values and correct tokenization
+    for(const Token& i : token1)
+    {
+        std::cout << i.value << ' ';
+        std::cout << "type: " << static_cast<int>(i.token) << '\n';
+    }
 
-    parse(input_token1); // before precedence: val1 = 50 after precedence: val1 = 4
-    parse(input_token2); 
+    std::string input2 = "val2 = 2 + 3 * 4 * 5";
+    std::vector<Token> token2 = tokenize(input2);
 
+    parse(token2); 
 }
