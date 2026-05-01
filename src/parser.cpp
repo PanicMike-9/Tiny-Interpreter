@@ -9,7 +9,7 @@ int i = 0;
 int factor(const std::vector<Token>& tokens)
 {
     // size mismatch error
-    if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input in factor()\n");
+    if(i >= tokens.size()) throw std::runtime_error("Error: end of input in factor()\n");
 
     const Token& current_token = tokens[i];
 
@@ -17,12 +17,13 @@ int factor(const std::vector<Token>& tokens)
     if(current_token.token == TokenType::NUMBER)
     {
         int number = std::stoi(current_token.value);
+        //std::cout << "Factor sees: " << current_token.value << '\n'; // check each value for debugging
         i++; // move to the next number
         return number;
     }
 
     // error if the value is wrong
-    throw std::runtime_error("Unxpected value is not a NUMBER in factor()\n");
+    throw std::runtime_error("Error: value is not a NUMBER in factor()\n");
 }
 
 // calculate multiplication and division logic
