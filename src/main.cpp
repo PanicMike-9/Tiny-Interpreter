@@ -16,8 +16,9 @@ int main()
         std::cout << "type: " << static_cast<int>(i.token) << '\n';
     }
 
-    std::string input2 = "val2 = 2 + 3 * 4 * 5";
+    std::string input2 = "val2 = 3 + 5 * 3 / 2";
     std::vector<Token> token2 = tokenize(input2);
 
-    parse(token2); 
+    parse(token1);
+    parse(token2); // the answer is actually 10.5, but we get 10, because it's integer division, the decimal value gets truncated
 }
