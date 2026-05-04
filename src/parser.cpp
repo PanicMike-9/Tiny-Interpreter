@@ -22,8 +22,15 @@ int factor(const std::vector<Token>& tokens)
         return number;
     }
 
-    // error if the value is wrong
-    throw std::runtime_error("Error: value is not a NUMBER in factor()\n");
+    // check unary operator()
+    if(current_token.token == TokenType::MINUS)
+    {
+        i++;
+        return -factor(tokens); // return negated value
+    }
+
+    // error message with the token value
+    throw std::runtime_error("Expected a NUMBER but got a " + current_token.value + " instead");
 }
 
 // calculate multiplication and division logic
