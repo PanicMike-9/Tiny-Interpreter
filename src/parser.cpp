@@ -29,6 +29,8 @@ int factor(const std::vector<Token>& tokens)
         return -factor(tokens); // return negated value
     }
 
+    // TODO: add parenthesis check
+
     // error message with the token value
     throw std::runtime_error("Expected a NUMBER but got a " + current_token.value + " instead");
 }
