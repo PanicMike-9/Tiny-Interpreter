@@ -10,7 +10,9 @@ enum class TokenType
    PLUS,
    MINUS,
    MULTIPLY,
-   DIVIDE
+   DIVIDE,
+   LEFT_PAREN,
+   RIGHT_PAREN,
 };
 
 struct Token
