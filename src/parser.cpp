@@ -13,6 +13,27 @@ int factor(const std::vector<Token>& tokens)
 
     const Token& current_token = tokens[i];
 
+    // parenthesis check 
+    if(current_token.token == TokenType::LEFT_PAREN)
+    {
+        i++;
+
+        int value = expression(tokens);
+
+        std::cout << "Open paren detected\n";
+
+        if(i >= tokens.size() || tokens[i].token != TokenType::RIGHT_PAREN)
+        {
+            throw std::runtime_error("Error: expected ')'");
+        }
+
+        std::cout << "Close paren detected\n";
+
+        i++;
+
+        return value;
+    }
+
     // check for NUMBER token
     if(current_token.token == TokenType::NUMBER)
     {
@@ -28,9 +49,7 @@ int factor(const std::vector<Token>& tokens)
         i++;
         return -factor(tokens); // return negated value
     }
-
-    // TODO: add parenthesis check
-
+    
     // error message with the token value
     throw std::runtime_error("Expected a NUMBER but got a " + current_token.value + " instead");
 }
