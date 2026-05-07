@@ -7,10 +7,13 @@ std::vector<Token> tokenize(const std::string& input)
 
     int i = 0;
 
+    bool is_dot = false; // check for decimal points
+
     while(i < input.size())
     {
         char current_char = input[i];
 
+        // ignore spaces
         if(isspace(current_char)) 
         {
             i++;
@@ -84,6 +87,22 @@ std::vector<Token> tokenize(const std::string& input)
         else if(current_char == '/')
         {
             tokens.push_back( {TokenType::DIVIDE, "/"} );
+            i++;
+            continue;
+        }
+
+        // check open/left parenthesis
+        else if(current_char == '(')
+        {
+            tokens.push_back( {TokenType::LEFT_PAREN, "("} );
+            i++;
+            continue;
+        }
+
+        // check close/right parenthesis
+        else if(current_char == ')')
+        {
+            tokens.push_back( {TokenType::RIGHT_PAREN, ")"} );
             i++;
             continue;
         }
