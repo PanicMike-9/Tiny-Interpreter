@@ -6,7 +6,7 @@
 int i = 0; 
 
 // return NUMBER 
-int factor(const std::vector<Token>& tokens)
+double factor(const std::vector<Token>& tokens)
 {
     // size mismatch error
     if(i >= tokens.size()) throw std::runtime_error("Error: end of input in factor()\n");
@@ -18,7 +18,7 @@ int factor(const std::vector<Token>& tokens)
     {
         i++;
 
-        int value = expression(tokens);
+        double value = expression(tokens);
 
         std::cout << "Open paren detected\n";
 
@@ -37,7 +37,7 @@ int factor(const std::vector<Token>& tokens)
     // check for NUMBER token
     if(current_token.token == TokenType::NUMBER)
     {
-        int number = std::stoi(current_token.value);
+        double number = std::stod(current_token.value);
         i++; // move to the next number
         return number;
     }
@@ -54,18 +54,18 @@ int factor(const std::vector<Token>& tokens)
 }
 
 // calculate multiplication and division logic
-int term(const std::vector<Token>& tokens)
+double term(const std::vector<Token>& tokens)
 {
     if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input\n");
 
-    int left = factor(tokens);
+    double left = factor(tokens);
 
     while(i < tokens.size() && (tokens[i].token == TokenType::MULTIPLY || tokens[i].token == TokenType::DIVIDE))
     {
         TokenType current_op = tokens[i].token;
         i++; // move to next token
 
-        int right = factor(tokens);
+        double right = factor(tokens);
 
         if(current_op == TokenType::MULTIPLY)
         {
@@ -81,18 +81,18 @@ int term(const std::vector<Token>& tokens)
 }
 
 // calculate addition and subtraction logic
-int expression(const std::vector<Token>& tokens)
+double expression(const std::vector<Token>& tokens)
 {
     if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input\n");
 
-    int left = term(tokens);
+    double left = term(tokens);
 
     while(i < tokens.size() && (tokens[i].token == TokenType::PLUS || tokens[i].token == TokenType::MINUS))
     {
         TokenType current_op = tokens[i].token;
         i++; // move to next token
 
-        int right = term(tokens);
+        double right = term(tokens);
 
         if(current_op == TokenType::PLUS)
         {
@@ -123,8 +123,7 @@ void parse(const std::vector<Token> &tokens)
 
     i++; // after assign move to next token
 
-    int value = expression(tokens);
-
+    double value = expression(tokens);
     // output variable token and final value
     std::cout << variable << " = " << value << " ";
 }
