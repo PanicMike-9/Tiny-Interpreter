@@ -38,7 +38,6 @@ int factor(const std::vector<Token>& tokens)
     if(current_token.token == TokenType::NUMBER)
     {
         int number = std::stoi(current_token.value);
-        //std::cout << "Factor sees: " << current_token.value << '\n'; // check each value for debugging
         i++; // move to the next number
         return number;
     }
