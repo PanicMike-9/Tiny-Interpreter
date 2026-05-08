@@ -6,7 +6,7 @@
 
 int main()
 {
-    std::string input1 = "x = (10 + 10) * 2.5 + 5 / 6";
+    std::string input1 = "x = (10.0 + 10.0) * 2.5 + 5 / 6";
     std::vector<Token> token1 = tokenize(input1);
     
     // debugging to check correct token values and correct tokenization
