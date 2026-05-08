@@ -6,7 +6,7 @@
 
 int main()
 {
-    std::string input1 = "x = (10 + 10) * 2 + 5 / 6";
+    std::string input1 = "x = (10 + 10) * 2.5 + 5 / 6";
     std::vector<Token> token1 = tokenize(input1);
     
     // debugging to check correct token values and correct tokenization
@@ -26,6 +26,6 @@ int main()
         std::cout << "token2 type: " << static_cast<int>(i.token) << '\n';
     }
 
-    parse(token1); // 40 (actual 40.8333) but integer calculations truncates it
-    parse(token2); // 10
+    parse(token1); // 40.8333
+    parse(token2); // 10.5
 }
