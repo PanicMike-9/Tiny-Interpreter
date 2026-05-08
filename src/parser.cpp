@@ -1,6 +1,7 @@
 #include "parser.hpp"
 #include <iostream>
 #include <string>
+#include <unordered_map>
 
 // global i, used for all functions
 int i = 0; 
@@ -16,20 +17,16 @@ double factor(const std::vector<Token>& tokens)
     // parenthesis check 
     if(current_token.token == TokenType::LEFT_PAREN)
     {
-        i++;
+        i++; // move ahead
 
         double value = expression(tokens);
-
-        std::cout << "Open paren detected\n";
 
         if(i >= tokens.size() || tokens[i].token != TokenType::RIGHT_PAREN)
         {
             throw std::runtime_error("Error: expected ')'");
         }
 
-        std::cout << "Close paren detected\n";
-
-        i++;
+        i++; // move ahead
 
         return value;
     }
@@ -109,6 +106,8 @@ double expression(const std::vector<Token>& tokens)
 
 void parse(const std::vector<Token> &tokens)
 {
+    std::unordered_map<std::string, double> variables;
+
     i = 0; // reset i
 
     if(tokens[i].token != TokenType::IDENT) 
