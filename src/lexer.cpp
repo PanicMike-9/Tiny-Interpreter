@@ -22,13 +22,26 @@ std::vector<Token> tokenize(const std::string& input)
 
         // -- Always check digit first -- //
 
+
         // check digit
         else if(isdigit(current_char))
         {
             int start = i;
 
-            while(i < input.size() && isdigit(input[i])) 
+            // read digit and decimal points
+            while(i < input.size() && isdigit(input[i]) || (input[i] == '.' && is_dot == false)) 
+            {
+                // check the decimal points
+                if(current_char == '.' && is_dot == false)
+                {
+                    if(input[i] == '.')
+                    {
+                        is_dot = true;
+                    }
+                }
+
                 i++;
+            }
 
             std::string number_string = input.substr(start, i - start);
 
