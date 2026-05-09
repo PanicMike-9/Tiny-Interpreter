@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <unordered_map>
 
 int main()
 {
@@ -28,4 +29,7 @@ int main()
 
     parse(token1); // 40.8333
     parse(token2); // 10.5
+
+    std::unordered_map<std::string, int> student_info;
 }
+
