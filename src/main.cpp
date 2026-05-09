@@ -3,7 +3,6 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#include <unordered_map>
 
 int main()
 {
@@ -27,20 +26,8 @@ int main()
         std::cout << "token2 type: " << static_cast<int>(i.token) << '\n';
     }
 
+
     parse(token1); // 40.8333
     parse(token2); // 10.5
-
-    std::cout << '\n';
-
-    std::unordered_map<std::string, int> student_info;
-
-    student_info.insert( {"CowMan", 3} );
-    student_info.insert( {"MonkeyBoy", 2} );
-    student_info.insert( {"CatDog", 1} );
-
-    for(auto i : student_info)
-    {
-        std::cout << i.first << ": " << i.second << '\n';
-    }
 }
 
