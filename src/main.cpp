@@ -26,8 +26,18 @@ int main()
         std::cout << "token2 type: " << static_cast<int>(i.token) << '\n';
     }
 
+    std::string input3 = "z = x + y";
+    std::vector<Token> token3 = tokenize(input3);
 
-    parse(token1); // 40.8333
+    for(const Token& i : token3)
+    {
+        std::cout << i.value << ' ';
+        std::cout << "token3 type: " << static_cast<int>(i.token) << '\n';
+    }
+
+
+    parse(token1); // 50.8333
     parse(token2); // 10.5
+    parse(token3);
 }
 
