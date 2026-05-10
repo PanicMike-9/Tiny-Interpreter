@@ -23,7 +23,13 @@ double factor(const std::vector<Token>& tokens)
         std::string var_name = tokens[i].value;
         i++;
 
+        if(variables.find(var_name) == variables.end())
+        {
+            throw std::runtime_error("Error: undefined variable: " + var_name);
+        }
+        
         return variables[var_name];
+
     }
 
     // parenthesis check 
