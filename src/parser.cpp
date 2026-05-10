@@ -23,7 +23,7 @@ double factor(const std::vector<Token>& tokens)
         std::string var_name = tokens[i].value;
         i++;
 
-        return variables[var_name] = expression(tokens);
+        return variables[var_name];
     }
 
     // parenthesis check 
