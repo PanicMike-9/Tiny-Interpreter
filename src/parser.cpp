@@ -3,6 +3,9 @@
 #include <string>
 #include <unordered_map>
 
+
+std::unordered_map<std::string, double> variables;
+
 // global i, used for all functions
 int i = 0; 
 
@@ -13,6 +16,15 @@ double factor(const std::vector<Token>& tokens)
     if(i >= tokens.size()) throw std::runtime_error("Error: end of input in factor()\n");
 
     const Token& current_token = tokens[i];
+
+    // check and store variable name
+    if(current_token.token == TokenType::IDENT)
+    {
+        std::string var_name = tokens[i].value;
+        i++;
+
+        return variables[var_name] = expression(tokens);
+    }
 
     // parenthesis check 
     if(current_token.token == TokenType::LEFT_PAREN)
@@ -106,8 +118,6 @@ double expression(const std::vector<Token>& tokens)
 
 void parse(const std::vector<Token> &tokens)
 {
-    std::unordered_map<std::string, double> variables;
-
     i = 0; // reset i
 
     if(tokens[i].token != TokenType::IDENT) 
@@ -123,6 +133,9 @@ void parse(const std::vector<Token> &tokens)
     i++; // after assign move to next token
 
     double value = expression(tokens);
+
+    variables[variable] = value;
+
     // output variable token and final value
     std::cout << variable << " = " << value << " ";
 }
