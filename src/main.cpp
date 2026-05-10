@@ -17,7 +17,7 @@ int main()
     }
 
 
-    std::string input2 = "y = 3 + 5 * 3 / 2";
+    std::string input2 = "y = x * (3 + 5) * 3 / 2";
     std::vector<Token> token2 = tokenize(input2);
 
     for(const Token& i : token2)
@@ -26,7 +26,7 @@ int main()
         std::cout << "token2 type: " << static_cast<int>(i.token) << '\n';
     }
 
-    std::string input3 = "z = x + y";
+    std::string input3 = "z = v + y";
     std::vector<Token> token3 = tokenize(input3);
 
     for(const Token& i : token3)
@@ -38,6 +38,6 @@ int main()
 
     parse(token1); // 50.8333
     parse(token2); // 10.5
-    parse(token3);
+    parse(token3); // 61.333
 }
 
