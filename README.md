@@ -1,6 +1,6 @@
 # Tiny Interpreter
 
-A tiny interpreter written in **C++** to learn fundamentals of compilers.
+A tiny interpreter written in **C++** to learn fundamentals of interpreters and compilers.
 
 ## Features
 - *Tokenization* (Lexer) 
@@ -12,8 +12,8 @@ A tiny interpreter written in **C++** to learn fundamentals of compilers.
 - `parser.cpp/hpp` - Parses expressions
 
 ## Project Goals
-- Build an interpreter from scratch
-- Learn compiler design concepts:
-  * Lexer **(WIP)**
-  * Parser: Now supports, precedence based on PEMDAS and parenthesis
-  * Abstract Syntax Tree **(WIP)**
+- Build a general interpreter from scratch
+- Learn interpreter design concepts:
+  * Lexer 
+  * Parser
+  * Abstract Syntax Tree
