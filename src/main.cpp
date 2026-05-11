@@ -26,7 +26,7 @@ int main()
         std::cout << "token2 type: " << static_cast<int>(i.token) << '\n';
     }
 
-    std::string input3 = "z = v + y";
+    std::string input3 = "z = (2.2 * 5.2) / x + y / 2";
     std::vector<Token> token3 = tokenize(input3);
 
     for(const Token& i : token3)
