@@ -3,7 +3,7 @@
 #include <string>
 #include <unordered_map>
 
-
+// global access to unordered_map
 std::unordered_map<std::string, double> variables;
 
 // global i, used for all functions
@@ -23,13 +23,13 @@ double factor(const std::vector<Token>& tokens)
         std::string var_name = tokens[i].value;
         i++;
 
+        // undeclared variables or undefined variables check
         if(variables.find(var_name) == variables.end())
         {
             throw std::runtime_error("Error: undefined variable: " + var_name);
         }
         
         return variables[var_name];
-
     }
 
     // parenthesis check 
@@ -44,7 +44,7 @@ double factor(const std::vector<Token>& tokens)
             throw std::runtime_error("Error: expected ')'");
         }
 
-        i++; // move ahead
+        i++; 
 
         return value;
     }
@@ -95,6 +95,22 @@ double term(const std::vector<Token>& tokens)
     return left;
 }
 
+// incorrect working on it
+bool comparison(const std::vector<Token>& tokens)
+{
+    double left = expression(tokens);
+    double right = expression(tokens);
+
+    if(tokens[i].token == TokenType::GREATER)
+    {
+        return left > right;
+    }
+    else
+    {
+        return left < right;
+    }
+}
+
 // calculate addition and subtraction logic
 double expression(const std::vector<Token>& tokens)
 {
@@ -138,12 +154,10 @@ void parse(const std::vector<Token> &tokens)
 
     i++; // after assign move to next token
 
-    double value = expression(tokens);
+    double value = comparison(tokens);
 
     variables[variable] = value;
 
     // output variable token and final value
     std::cout << variable << " = " << value << " ";
 }
-
-
