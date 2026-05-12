@@ -13,6 +13,8 @@ enum class TokenType
    DIVIDE,
    LEFT_PAREN,
    RIGHT_PAREN,
+   GREATER,
+   LESSER,
 };
 
 struct Token
