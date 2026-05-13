@@ -34,7 +34,7 @@ int main()
         std::cout << i.value << " type: " << static_cast<int>(i.token) << '\n';
     }
 
-    std::string input4 = "f = 3 + 3 > 2 * 2";
+    std::string input4 = "a= 3 * 5 > 5 * 5";
     std::vector<Token> token4 = tokenize(input4);
 
     std::cout << "--- Token 4 ---\n";
