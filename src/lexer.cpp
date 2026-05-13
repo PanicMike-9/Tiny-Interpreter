@@ -22,7 +22,6 @@ std::vector<Token> tokenize(const std::string& input)
 
         // -- Always check digit first -- //
 
-
         // check digit
         else if(isdigit(current_char))
         {
@@ -116,6 +115,22 @@ std::vector<Token> tokenize(const std::string& input)
         else if(current_char == ')')
         {
             tokens.push_back( {TokenType::RIGHT_PAREN, ")"} );
+            i++;
+            continue;
+        }
+
+        // greater than
+        else if(current_char == '>')
+        {
+            tokens.push_back( {TokenType::GREATER, ">"} );
+            i++;
+            continue;
+        }
+
+        // leser than
+        else if(current_char == '<')
+        {
+            tokens.push_back( {TokenType::LESSER, "<"} );
             i++;
             continue;
         }
