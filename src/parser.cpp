@@ -98,6 +98,8 @@ double term(const std::vector<Token>& tokens)
 // incorrect working on it
 bool comparison(const std::vector<Token>& tokens)
 {
+    bool flag = false;
+    return flag;
 }
 
 // calculate addition and subtraction logic
@@ -144,7 +146,7 @@ void parse(const std::vector<Token> &tokens)
 
     i++; // after assign move to next token
 
-    double value = comparison(tokens);
+    double value = expression(tokens);
 
     variables[variable] = value;
 
