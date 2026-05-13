@@ -71,7 +71,7 @@ double factor(const std::vector<Token>& tokens)
 // calculate multiplication and division logic
 double term(const std::vector<Token>& tokens)
 {
-    if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input\n");
+    if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input term()\n");
 
     double left = factor(tokens);
 
@@ -95,17 +95,58 @@ double term(const std::vector<Token>& tokens)
     return left;
 }
 
-// incorrect working on it
-bool comparison(const std::vector<Token>& tokens)
+// compare and true 1 or 0 for true or false
+double comparison(const std::vector<Token>& tokens)
 {
-    bool flag = false;
-    return flag;
+    if(i >= tokens.size()) throw std::runtime_error("Error: Unexpected end of input comparison()\n");
+    
+    double left = expression(tokens);
+
+    double compare_val = 0;
+    TokenType current_op = tokens[i].token;
+
+    double right = 0;
+
+    // check and assign current operator and parse right after
+    if(tokens[i].token == TokenType::GREATER)
+    {
+        current_op = TokenType::GREATER;
+        i++;
+        right = expression(tokens);
+    }
+    else if(tokens[i].token == TokenType::LESSER)
+    {
+        current_op = TokenType::LESSER;
+        i++;
+        right = expression(tokens);
+    }
+     
+    // compare values and return true, if they don't compare compare_val returns 0
+    if(current_op == TokenType::GREATER && left > right)
+    {
+        compare_val = 1;
+    }
+    else if(current_op == TokenType::LESSER && left < right)
+    {
+        compare_val = 1;
+    }
+
+    // return value if > & < aren't detected
+    if(current_op != TokenType::GREATER && current_op != TokenType::LESSER)
+    {
+        return left;
+    }
+    else
+    {
+        return compare_val;
+    }
+
 }
 
 // calculate addition and subtraction logic
 double expression(const std::vector<Token>& tokens)
 {
-    if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input\n");
+    if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input expression()\n");
 
     double left = term(tokens);
 
@@ -146,7 +187,7 @@ void parse(const std::vector<Token> &tokens)
 
     i++; // after assign move to next token
 
-    double value = expression(tokens);
+    double value = comparison(tokens);
 
     variables[variable] = value;
 
