@@ -98,18 +98,6 @@ double term(const std::vector<Token>& tokens)
 // incorrect working on it
 bool comparison(const std::vector<Token>& tokens)
 {
-    double left = expression(tokens);
-    double right = expression(tokens);
-
-    if(tokens[i].token == TokenType::GREATER)
-    {
-        return left > right;
-    }
-      
-    if(tokens[i].token == TokenType::LESSER)
-    {
-        return left < right;
-    }
 }
 
 // calculate addition and subtraction logic
