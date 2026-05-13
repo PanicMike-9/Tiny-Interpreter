@@ -105,7 +105,8 @@ bool comparison(const std::vector<Token>& tokens)
     {
         return left > right;
     }
-    else
+      
+    if(tokens[i].token == TokenType::LESSER)
     {
         return left < right;
     }
@@ -138,6 +139,7 @@ double expression(const std::vector<Token>& tokens)
     return left;
 }
 
+// parse tokens
 void parse(const std::vector<Token> &tokens)
 {
     i = 0; // reset i
