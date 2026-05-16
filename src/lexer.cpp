@@ -135,6 +135,23 @@ std::vector<Token> tokenize(const std::string& input)
             continue;
         }
 
+        // -- fix multi char issue --
+        // greater equal 
+        else if(current_char = '<=')
+        {
+            tokens.push_back( {TokenType::GREATER_EQUAL} );
+            i++; 
+            continue;
+        }
+
+        // lesser equal
+        else if(current_char = '>=')
+        {
+            tokens.push_back( {TokenType::LESSER_EQUAL} );
+            i++;
+            continue;
+        }
+
         i++;
     }
 
