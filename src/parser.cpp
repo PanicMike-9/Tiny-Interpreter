@@ -114,9 +114,9 @@ double comparison(const std::vector<Token>& tokens)
         i++;
         right = expression(tokens);
     }
-    else if(tokens[i].token == TokenType::LESSER)
+    else if(tokens[i].token == TokenType::LESS)
     {
-        current_op = TokenType::LESSER;
+        current_op = TokenType::LESS;
         i++;
         right = expression(tokens);
     }
@@ -126,13 +126,13 @@ double comparison(const std::vector<Token>& tokens)
     {
         compare_val = 1;
     }
-    else if(current_op == TokenType::LESSER && left < right)
+    else if(current_op == TokenType::LESS && left < right)
     {
         compare_val = 1;
     }
 
     // return value if > & < aren't detected
-    if(current_op != TokenType::GREATER && current_op != TokenType::LESSER)
+    if(current_op != TokenType::GREATER && current_op != TokenType::LESS)
     {
         return left;
     }
