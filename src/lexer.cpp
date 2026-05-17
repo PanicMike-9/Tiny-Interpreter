@@ -119,6 +119,24 @@ std::vector<Token> tokenize(const std::string& input)
             continue;
         }
 
+        // -- Longer tokens before --
+
+        // greater equal 
+        else if(current_char == '>' && input[i + 1] == '=')
+        {
+            tokens.push_back( {TokenType::GREATER_EQUAL} );
+            i++; 
+            continue;
+        }
+
+        // lesser equal
+        else if(current_char == '<' && input[i + 1] == '=')
+        {
+            tokens.push_back( {TokenType::LESS_EQUAL} );
+            i++;
+            continue;
+        }
+
         // greater than
         else if(current_char == '>')
         {
@@ -130,24 +148,7 @@ std::vector<Token> tokenize(const std::string& input)
         // leser than
         else if(current_char == '<')
         {
-            tokens.push_back( {TokenType::LESSER, "<"} );
-            i++;
-            continue;
-        }
-
-        // -- fix multi char issue --
-        // greater equal 
-        else if(current_char = '<=')
-        {
-            tokens.push_back( {TokenType::GREATER_EQUAL} );
-            i++; 
-            continue;
-        }
-
-        // lesser equal
-        else if(current_char = '>=')
-        {
-            tokens.push_back( {TokenType::LESSER_EQUAL} );
+            tokens.push_back( {TokenType::LESS, "<"} );
             i++;
             continue;
         }
