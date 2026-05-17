@@ -14,9 +14,9 @@ enum class TokenType
    LEFT_PAREN,
    RIGHT_PAREN,
    GREATER,
-   LESSER,
+   LESS,
    GREATER_EQUAL,
-   LESSER_EQUAL,
+   LESS_EQUAL,
 };
 
 struct Token
