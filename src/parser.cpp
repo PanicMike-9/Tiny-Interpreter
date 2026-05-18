@@ -75,18 +75,18 @@ double term(const std::vector<Token>& tokens)
 
     double left = factor(tokens);
 
-    while(i < tokens.size() && (tokens[i].token == TokenType::MULTIPLY || tokens[i].token == TokenType::DIVIDE))
+    while(i < tokens.size() && (tokens[i].token == TokenType::STAR || tokens[i].token == TokenType::SLASH))
     {
         TokenType current_op = tokens[i].token;
         i++; // move to next token
 
         double right = factor(tokens);
 
-        if(current_op == TokenType::MULTIPLY)
+        if(current_op == TokenType::STAR)
         {
             left *= right;
         }
-        else if(current_op == TokenType::DIVIDE)
+        else if(current_op == TokenType::SLASH)
         {
             left /= right;
         }
