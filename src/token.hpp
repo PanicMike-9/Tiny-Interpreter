@@ -4,19 +4,17 @@
 
 enum class TokenType
 {
-   IDENT,
-   ASSIGN,
-   NUMBER,
-   PLUS,
-   MINUS,
-   MULTIPLY,
-   DIVIDE,
-   LEFT_PAREN,
-   RIGHT_PAREN,
-   GREATER,
-   LESS,
-   GREATER_EQUAL,
-   LESS_EQUAL,
+   // literals
+   IDENT, NUMBER,
+
+   // single character tokens
+   PLUS, MINUS, STAR, 
+   SLASH, LEFT_PAREN, 
+   RIGHT_PAREN, GREATER, 
+   LESS, ASSIGN,
+
+   // multi-character tokens
+   GREATER_EQUAL, LESS_EQUAL,
 };
 
 struct Token
