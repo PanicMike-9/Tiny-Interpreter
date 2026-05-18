@@ -90,7 +90,7 @@ std::vector<Token> tokenize(const std::string& input)
         // check multiply sign
         else if(current_char == '*')
         {
-            tokens.push_back( {TokenType::MULTIPLY, "*"} );
+            tokens.push_back( {TokenType::STAR, "*"} );
             i++;
             continue;
         }
@@ -98,7 +98,7 @@ std::vector<Token> tokenize(const std::string& input)
         // check divide sign
         else if(current_char == '/')
         {
-            tokens.push_back( {TokenType::DIVIDE, "/"} );
+            tokens.push_back( {TokenType::SLASH, "/"} );
             i++;
             continue;
         }
