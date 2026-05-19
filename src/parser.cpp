@@ -107,6 +107,20 @@ double comparison(const std::vector<Token>& tokens)
 
     double right = 0;
 
+    // check and assign >= and <=
+    if(tokens[i].token == TokenType::GREATER_EQUAL)
+    {
+        current_op = TokenType::GREATER_EQUAL;
+        i++;
+        right = expression(tokens);
+    }
+    else if(tokens[i].token == TokenType::LESS_EQUAL)
+    {
+        current_op = TokenType::LESS_EQUAL;
+        i++;
+        right = expression(tokens);
+    }
+
     // check and assign current operator and parse right after
     if(tokens[i].token == TokenType::GREATER)
     {
@@ -120,8 +134,18 @@ double comparison(const std::vector<Token>& tokens)
         i++;
         right = expression(tokens);
     }
+
+    // compare values and return true, if they don't compare, compare_val returns 0
+    if(current_op == TokenType::GREATER_EQUAL && left >= right)
+    {
+        compare_val = 1;
+    }
+    else if(current_op == TokenType::LESS_EQUAL && left <= right)
+    {
+        compare_val = 1;
+    }
      
-    // compare values and return true, if they don't compare compare_val returns 0
+    // compare values and return true, if they don't compare, compare_val returns 0
     if(current_op == TokenType::GREATER && left > right)
     {
         compare_val = 1;
@@ -132,12 +156,15 @@ double comparison(const std::vector<Token>& tokens)
     }
 
     // return value if > & < aren't detected
-    if(current_op != TokenType::GREATER && current_op != TokenType::LESS)
+    if(current_op != TokenType::GREATER && current_op != TokenType::LESS && 
+       current_op != TokenType::GREATER_EQUAL && current_op != TokenType::LESS_EQUAL)
     {
         return left;
     }
     else
     {
+        if(compare_val == 1) std::cout << " true ";
+        else std::cout << " false ";
         return compare_val;
     }
 
