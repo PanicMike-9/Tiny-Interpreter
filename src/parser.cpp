@@ -112,11 +112,13 @@ double comparison(const std::vector<Token>& tokens)
     {
         current_op = TokenType::GREATER_EQUAL;
         i++;
+        i++;
         right = expression(tokens);
     }
     else if(tokens[i].token == TokenType::LESS_EQUAL)
     {
         current_op = TokenType::LESS_EQUAL;
+        i++;
         i++;
         right = expression(tokens);
     }
