@@ -7,21 +7,21 @@
 std::unordered_map<std::string, double> variables;
 
 // global i, used for all functions
-int i = 0; 
+int token_pos = 0; 
 
 // return NUMBER 
 double factor(const std::vector<Token>& tokens)
 {
     // size mismatch error
-    if(i >= tokens.size()) throw std::runtime_error("Error: end of input in factor()\n");
+    if(token_pos >= tokens.size()) throw std::runtime_error("Error: end of input in factor()\n");
 
-    const Token& current_token = tokens[i];
+    const Token& current_token = tokens[token_pos];
 
     // check and store variable name
     if(current_token.token == TokenType::IDENT)
     {
-        std::string var_name = tokens[i].value;
-        i++;
+        std::string var_name = tokens[token_pos].value;
+        token_pos++;
 
         // undeclared variables or undefined variables check
         if(variables.find(var_name) == variables.end())
@@ -35,16 +35,16 @@ double factor(const std::vector<Token>& tokens)
     // parenthesis check 
     if(current_token.token == TokenType::LEFT_PAREN)
     {
-        i++; // move ahead
+        token_pos++; // move ahead
 
         double value = expression(tokens);
 
-        if(i >= tokens.size() || tokens[i].token != TokenType::RIGHT_PAREN)
+        if(token_pos >= tokens.size() || tokens[token_pos].token != TokenType::RIGHT_PAREN)
         {
             throw std::runtime_error("Error: expected ')'");
         }
 
-        i++; 
+        token_pos++; 
 
         return value;
     }
@@ -53,14 +53,14 @@ double factor(const std::vector<Token>& tokens)
     if(current_token.token == TokenType::NUMBER)
     {
         double number = std::stod(current_token.value);
-        i++; // move to the next number
+        token_pos++; // move to the next number
         return number;
     }
 
     // check unary operator()
     if(current_token.token == TokenType::MINUS)
     {
-        i++;
+        token_pos++;
         return -factor(tokens); // return negated value
     }
     
@@ -71,14 +71,14 @@ double factor(const std::vector<Token>& tokens)
 // calculate multiplication and division logic
 double term(const std::vector<Token>& tokens)
 {
-    if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input term()\n");
+    if(token_pos >= tokens.size()) throw std::runtime_error("Unexpected end of input term()\n");
 
     double left = factor(tokens);
 
-    while(i < tokens.size() && (tokens[i].token == TokenType::STAR || tokens[i].token == TokenType::SLASH))
+    while(token_pos < tokens.size() && (tokens[token_pos].token == TokenType::STAR || tokens[token_pos].token == TokenType::SLASH))
     {
-        TokenType current_op = tokens[i].token;
-        i++; // move to next token
+        TokenType current_op = tokens[token_pos].token;
+        token_pos++; // move to next token
 
         double right = factor(tokens);
 
@@ -98,40 +98,40 @@ double term(const std::vector<Token>& tokens)
 // compare and true 1 or 0 for true or false
 double comparison(const std::vector<Token>& tokens)
 {
-    if(i >= tokens.size()) throw std::runtime_error("Error: Unexpected end of input comparison()\n");
+    if(token_pos >= tokens.size()) throw std::runtime_error("Error: Unexpected end of input comparison()\n");
     
     double left = expression(tokens);
 
     double compare_val = 0;
-    TokenType current_op = tokens[i].token;
+    TokenType current_op = tokens[token_pos].token;
 
     double right = 0;
 
     // check and assign >= and <=
-    if(tokens[i].token == TokenType::GREATER_EQUAL)
+    if(tokens[token_pos].token == TokenType::GREATER_EQUAL)
     {
         current_op = TokenType::GREATER_EQUAL;
-        i++;
+        token_pos++;
         right = expression(tokens);
     }
-    else if(tokens[i].token == TokenType::LESS_EQUAL)
+    else if(tokens[token_pos].token == TokenType::LESS_EQUAL)
     {
         current_op = TokenType::LESS_EQUAL;
-        i++;
+        token_pos++;
         right = expression(tokens);
     }
 
     // check and assign current operator and parse right after
-    if(tokens[i].token == TokenType::GREATER)
+    if(tokens[token_pos].token == TokenType::GREATER)
     {
         current_op = TokenType::GREATER;
-        i++;
+        token_pos++;
         right = expression(tokens);
     }
-    else if(tokens[i].token == TokenType::LESS)
+    else if(tokens[token_pos].token == TokenType::LESS)
     {
         current_op = TokenType::LESS;
-        i++;
+        token_pos++;
         right = expression(tokens);
     }
 
@@ -173,14 +173,14 @@ double comparison(const std::vector<Token>& tokens)
 // calculate addition and subtraction logic
 double expression(const std::vector<Token>& tokens)
 {
-    if(i >= tokens.size()) throw std::runtime_error("Unexpected end of input expression()\n");
+    if(token_pos >= tokens.size()) throw std::runtime_error("Unexpected end of input expression()\n");
 
     double left = term(tokens);
 
-    while(i < tokens.size() && (tokens[i].token == TokenType::PLUS || tokens[i].token == TokenType::MINUS))
+    while(token_pos < tokens.size() && (tokens[token_pos].token == TokenType::PLUS || tokens[token_pos].token == TokenType::MINUS))
     {
-        TokenType current_op = tokens[i].token;
-        i++; // move to next token
+        TokenType current_op = tokens[token_pos].token;
+        token_pos++; // move to next token
 
         double right = term(tokens);
 
@@ -200,19 +200,19 @@ double expression(const std::vector<Token>& tokens)
 // parse tokens
 void parse(const std::vector<Token> &tokens)
 {
-    i = 0; // reset i
+    token_pos = 0; // reset i
 
-    if(tokens[i].token != TokenType::IDENT) 
+    if(tokens[token_pos].token != TokenType::IDENT) 
         throw std::runtime_error("Expected variable");
 
     // set variable
-    std::string variable = tokens[i].value;
-    i++;
+    std::string variable = tokens[token_pos].value;
+    token_pos++;
 
-    if(tokens[i].token != TokenType::ASSIGN) 
+    if(tokens[token_pos].token != TokenType::ASSIGN) 
         throw std::runtime_error("Expected =");
 
-    i++; // after assign move to next token
+    token_pos++; // after assign move to next token
 
     double value = comparison(tokens);
 
