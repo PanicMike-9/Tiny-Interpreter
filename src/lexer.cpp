@@ -5,18 +5,18 @@ std::vector<Token> tokenize(const std::string& input)
     // store all tokens
     std::vector<Token> tokens; 
 
-    int i = 0;
+    int position = 0;
 
     bool is_dot = false; // check for decimal points
 
-    while(i < input.size())
+    while(position < input.size())
     {
-        char current_char = input[i];
+        char current_char = input[position];
 
         // ignore spaces
         if(isspace(current_char)) 
         {
-            i++;
+            position++;
             continue;
         }
 
@@ -25,24 +25,24 @@ std::vector<Token> tokenize(const std::string& input)
         // check digit
         else if(isdigit(current_char))
         {
-            int start = i;
+            int start = position;
 
             // read digit and decimal points
-            while(i < input.size() && isdigit(input[i]) || (input[i] == '.' && is_dot == false)) 
+            while(position < input.size() && isdigit(input[position]) || (input[position] == '.' && is_dot == false)) 
             {
                 // check the decimal points
                 if(current_char == '.' && is_dot == false)
                 {
-                    if(input[i] == '.')
+                    if(input[position] == '.')
                     {
                         is_dot = true;
                     }
                 }
 
-                i++;
+                position++;
             }
 
-            std::string number_string = input.substr(start, i - start);
+            std::string number_string = input.substr(start, position - start);
 
             tokens.push_back( {TokenType::NUMBER, number_string} );
 
@@ -52,12 +52,12 @@ std::vector<Token> tokenize(const std::string& input)
         // check alphabet and digits
         else if(isalnum(current_char))
         {
-            int start = i;
+            int start = position;
 
-            while(i < input.size() && isalnum(input[i]))
-                i++;
+            while(position < input.size() && isalnum(input[position]))
+                position++;
             
-            std::string identifier = input.substr(start, i - start);
+            std::string identifier = input.substr(start, position - start);
             tokens.push_back( {TokenType::IDENT, identifier} );
 
             continue;
@@ -67,7 +67,7 @@ std::vector<Token> tokenize(const std::string& input)
         else if(current_char == '=')
         {
             tokens.push_back( {TokenType::ASSIGN, "="} );
-            i++;
+            position++;
             continue;
         }
 
@@ -75,7 +75,7 @@ std::vector<Token> tokenize(const std::string& input)
         else if(current_char == '+')
         {
             tokens.push_back( {TokenType::PLUS, "+"} );
-            i++;
+            position++;
             continue;
         }
 
@@ -83,7 +83,7 @@ std::vector<Token> tokenize(const std::string& input)
         else if(current_char == '-')
         {
             tokens.push_back( {TokenType::MINUS, "-"} );
-            i++;
+            position++;
             continue;
         }
 
@@ -91,7 +91,7 @@ std::vector<Token> tokenize(const std::string& input)
         else if(current_char == '*')
         {
             tokens.push_back( {TokenType::STAR, "*"} );
-            i++;
+            position++;
             continue;
         }
 
@@ -99,7 +99,7 @@ std::vector<Token> tokenize(const std::string& input)
         else if(current_char == '/')
         {
             tokens.push_back( {TokenType::SLASH, "/"} );
-            i++;
+            position++;
             continue;
         }
 
@@ -107,7 +107,7 @@ std::vector<Token> tokenize(const std::string& input)
         else if(current_char == '(')
         {
             tokens.push_back( {TokenType::LEFT_PAREN, "("} );
-            i++;
+            position++;
             continue;
         }
 
@@ -115,27 +115,27 @@ std::vector<Token> tokenize(const std::string& input)
         else if(current_char == ')')
         {
             tokens.push_back( {TokenType::RIGHT_PAREN, ")"} );
-            i++;
+            position++;
             continue;
         }
 
         // -- Longer tokens before --
 
         // greater equal 
-        else if(current_char == '>' && input[i + 1] == '=')
+        else if(current_char == '>' && input[position + 1] == '=')
         {
             tokens.push_back( {TokenType::GREATER_EQUAL, ">="} );
-            i++; 
-            i++;
+            position++; 
+            position++;
             continue;
         }
 
         // lesser equal
-        else if(current_char == '<' && input[i + 1] == '=')
+        else if(current_char == '<' && input[position + 1] == '=')
         {
             tokens.push_back( {TokenType::LESS_EQUAL, "<="} );
-            i++;
-            i++;
+            position++;
+            position++;
             continue;
         }
 
@@ -143,7 +143,7 @@ std::vector<Token> tokenize(const std::string& input)
         else if(current_char == '>')
         {
             tokens.push_back( {TokenType::GREATER, ">"} );
-            i++;
+            position++;
             continue;
         }
 
@@ -151,11 +151,11 @@ std::vector<Token> tokenize(const std::string& input)
         else if(current_char == '<')
         {
             tokens.push_back( {TokenType::LESS, "<"} );
-            i++;
+            position++;
             continue;
         }
 
-        i++;
+        position++;
     }
 
     return tokens;
