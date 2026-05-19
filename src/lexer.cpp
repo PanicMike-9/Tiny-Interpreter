@@ -124,15 +124,17 @@ std::vector<Token> tokenize(const std::string& input)
         // greater equal 
         else if(current_char == '>' && input[i + 1] == '=')
         {
-            tokens.push_back( {TokenType::GREATER_EQUAL} );
+            tokens.push_back( {TokenType::GREATER_EQUAL, ">="} );
             i++; 
+            i++;
             continue;
         }
 
         // lesser equal
         else if(current_char == '<' && input[i + 1] == '=')
         {
-            tokens.push_back( {TokenType::LESS_EQUAL} );
+            tokens.push_back( {TokenType::LESS_EQUAL, "<="} );
+            i++;
             i++;
             continue;
         }
