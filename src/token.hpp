@@ -11,10 +11,11 @@ enum class TokenType
    PLUS, MINUS, STAR, 
    SLASH, LEFT_PAREN, 
    RIGHT_PAREN, GREATER, 
-   LESS, ASSIGN,
+   LESS, ASSIGN, BANG,
 
    // multi-character tokens
    GREATER_EQUAL, LESS_EQUAL,
+   BANG_EQUAL,
 };
 
 struct Token
