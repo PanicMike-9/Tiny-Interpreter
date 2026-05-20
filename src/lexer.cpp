@@ -155,6 +155,21 @@ std::vector<Token> tokenize(const std::string& input)
             continue;
         }
 
+        else if(current_char == '!' && current_char == '=' )
+        {
+            tokens.push_back( {TokenType::BANG_EQUAL, "!="} );
+            position++;
+            position++;
+            continue;
+        }
+
+        else if(current_char == '!')
+        {
+            tokens.push_back( {TokenType::BANG, "!"} );
+            position++;
+            continue;
+        }
+
         position++;
     }
 
