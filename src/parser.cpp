@@ -107,6 +107,14 @@ double comparison(const std::vector<Token>& tokens)
 
     double right = 0;
 
+    // check !=
+    if(tokens[token_pos].token == TokenType::BANG_EQUAL)
+    {
+        current_op = TokenType::BANG_EQUAL;
+        token_pos++;
+        right = expression(tokens);
+    }
+
     // check and assign >= and <=
     if(tokens[token_pos].token == TokenType::GREATER_EQUAL)
     {
@@ -163,8 +171,6 @@ double comparison(const std::vector<Token>& tokens)
     }
     else
     {
-        if(compare_val == 1) std::cout << " true ";
-        else std::cout << " false ";
         return compare_val;
     }
 
