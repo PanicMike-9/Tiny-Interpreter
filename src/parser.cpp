@@ -107,7 +107,7 @@ double comparison(const std::vector<Token>& tokens)
 
     double right = 0;
 
-    // check !=
+    // check and assign !=
     if(tokens[token_pos].token == TokenType::BANG_EQUAL)
     {
         current_op = TokenType::BANG_EQUAL;
