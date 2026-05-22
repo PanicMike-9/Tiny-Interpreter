@@ -52,10 +52,20 @@ int main()
         std::cout << i.value << " type: " << static_cast<int>(i.token) << '\n';
     }
 
+    std::string input6 = "c = 4 * 5 != 2 * 2";
+    std::vector<Token> token6 = tokenize(input6);
+
+    std::cout << "--- Token 6 ---\n";
+    for(const Token& i : token6)
+    {
+        std::cout << i.value << " type: " << static_cast<int>(i.token) << '\n';
+    }
+
     parse(token1); // 50.8333
     parse(token2); // 610
     parse(token3); // 305.255
     parse(token4); // false
     parse(token5); // true
+    parse(token6); // true
 }
 
