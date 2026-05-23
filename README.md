@@ -1,6 +1,6 @@
 # Tiny Interpreter
 
-A tiny interpreter written in **C++** to learn fundamentals of interpreters and compilers.
+A tiny interpreter written in **C++** to explore **tokenization**, **lexer design**, **recursive descent parsing**, **expression evaluation** and **interpreter architecture**.
 
 ## Features
 - *Tokenization* (Lexer) 
