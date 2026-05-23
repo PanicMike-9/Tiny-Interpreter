@@ -3,8 +3,19 @@
 A tiny interpreter written in **C++** to explore **tokenization**, **lexer design**, **recursive descent parsing**, **expression evaluation** and **interpreter architecture**.
 
 ## Features
-- *Tokenization* (Lexer) 
-- Basic *parsing* expressions
+- Lexer for tokenizing source input
+- Recursive descent parser for expression evaluation
+- Arithmetic operations with operator precedence
+- Parentheses support for grouped expressions
+- Variable assignment and storage
+- Comparison operators:
+  * `<`  
+  * `>`  
+  * `<=`  
+  * `>=`  
+  * `!=`  
+- Multi-character token handling
+- Token stream debugging output
 
 ## Structure
 - `token.hpp` - Token definitions
