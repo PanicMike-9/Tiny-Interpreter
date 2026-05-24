@@ -18,9 +18,9 @@ A tiny interpreter written in **C++** to explore **tokenization**, **lexer desig
 - Token stream debugging output
 
 ## Structure
-- `token.hpp` - Token definitions
-- `lexer.cpp/hpp` - Converts input to tokens
-- `parser.cpp/hpp` - Parses expressions
+- `token.hpp` - Defines token types and token metadata 
+- `lexer.cpp/hpp` - Handles lexical analysis and token generation 
+- `parser.cpp/hpp` - Handles recursive descent parsing and expression evaluation
 
 ## Project Goals
 - Build a general interpreter from scratch
