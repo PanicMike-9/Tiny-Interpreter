@@ -23,8 +23,13 @@ A tiny interpreter written in **C++** to explore **tokenization**, **lexer desig
 - `parser.cpp/hpp` - Handles recursive descent parsing and expression evaluation
 
 ## Project Goals
-- Build a general interpreter from scratch
-- Learn interpreter design concepts:
+- Build a small interpreted language from scratch in C++
+- Explore:
   * Lexer 
   * Parser
+  * Runtime architecture
+
+- Experiment features:
   * Abstract Syntax Tree
+  * Functions
+  * Logical operators
