@@ -29,7 +29,7 @@ A tiny interpreter written in **C++** to explore **tokenization**, **lexer desig
   * Parser
   * Runtime architecture
 
-- Experiment features:
-  * Abstract Syntax Tree
+- Experiment with features:
+  * Abstract Syntax Trees (AST)
   * Functions
   * Logical operators
