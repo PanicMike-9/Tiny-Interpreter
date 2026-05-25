@@ -16,6 +16,9 @@ enum class TokenType
    // multi-character tokens
    GREATER_EQUAL, LESS_EQUAL,
    BANG_EQUAL,
+
+   // keywords
+   AND, OR,
 };
 
 struct Token
