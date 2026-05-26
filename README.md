@@ -49,6 +49,8 @@ A tiny interpreter written in **C++** to explore **tokenization**, **lexer desig
 
     parse(token1);
 
+```
+```Bash
     --- Token 1 ---
 
       x type: 0
@@ -68,4 +70,3 @@ A tiny interpreter written in **C++** to explore **tokenization**, **lexer desig
       output:
       x = 50.8333
 ```
-
