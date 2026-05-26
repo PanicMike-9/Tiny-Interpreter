@@ -65,7 +65,7 @@ A tiny interpreter written in **C++** to explore **tokenization**, **lexer desig
       + type: 2
       5 type: 1
       / type: 5
-      6 type: 1/ 
+      6 type: 1 
 
       output:
       x = 50.8333
