@@ -33,3 +33,39 @@ A tiny interpreter written in **C++** to explore **tokenization**, **lexer desig
   * Abstract Syntax Trees (AST)
   * Functions
   * Logical operators
+
+## Working Example
+
+```C++
+    std::string input1 = "x = (10.0 + 10.0) * 2.5 + 5 / 6";
+    std::vector<Token> token1 = tokenize(input1);
+    
+    // debugging to check correct token values and correct tokenization
+    std::cout << "--- Token 1 ---\n";
+    for(const Token& i : token1)
+    {
+        std::cout << i.value << " type: " << static_cast<int>(i.token) << '\n';
+    }
+
+    parse(token1);
+
+    --- Token 1 ---
+
+      x type: 0
+      = type: 10
+      ( type: 6
+      10.0 type: 1
+      + type: 2
+      10.0 type: 1
+      ) type: 7
+      * type: 4
+      2.5 type: 1
+      + type: 2
+      5 type: 1
+      / type: 5
+      6 type: 1/ 
+
+      output:
+      x = 50.8333
+```
+
