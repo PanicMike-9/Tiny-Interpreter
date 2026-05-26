@@ -95,6 +95,8 @@ double term(const std::vector<Token>& tokens)
     return left;
 }
 
+// add logical operator function
+
 // compare and true 1 or 0 for true or false
 double comparison(const std::vector<Token>& tokens)
 {
