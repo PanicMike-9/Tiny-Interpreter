@@ -13,7 +13,21 @@ int main()
     std::cout << "--- Token 1 ---\n";
     for(const Token& i : token1)
     {
-        std::cout << i.value << " type: " << static_cast<int>(i.token) << '\n';
+        std::cout << i.value << " type: ";
+        switch(i.token)
+        {
+            case TokenType::IDENT:       std::cout  << "IDENT\n"; break;
+            case TokenType::NUMBER:      std::cout  << "number\n"; break;
+            case TokenType::ASSIGN:      std::cout  << "ASSIGN\n"; break;
+            case TokenType::PLUS:        std::cout  << "PLUS\n"; break;
+            case TokenType::MINUS:       std::cout  << "MINUS\n"; break;
+            case TokenType::STAR:        std::cout  << "STAR\n"; break;
+            case TokenType::SLASH:       std::cout  << "SLASH\n"; break;
+            case TokenType::RIGHT_PAREN: std::cout  << "RIGHT_PAREN\n"; break;
+            case TokenType::LEFT_PAREN:  std::cout  << "LEFT_PAREN\n"; break;
+
+            default: std::cout << " \n"; break;
+        }
     }
 
     std::string input2 = "y = x * (3 + 5) * 3 / 2";
