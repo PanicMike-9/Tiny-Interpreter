@@ -37,6 +37,7 @@ A tiny interpreter written in **C++** to explore **tokenization**, **lexer desig
 ## Working Example
 
 ```C++
+
     std::string input1 = "x = (10.0 + 10.0) * 2.5 + 5 / 6";
     std::vector<Token> token1 = tokenize(input1);
     
@@ -44,29 +45,41 @@ A tiny interpreter written in **C++** to explore **tokenization**, **lexer desig
     std::cout << "--- Token 1 ---\n";
     for(const Token& i : token1)
     {
-        std::cout << i.value << " type: " << static_cast<int>(i.token) << '\n';
+        std::cout << i.value << " type: ";
+        switch(i.token)
+        {
+            case TokenType::IDENT: std::cout << "ident\n"; break;
+            case TokenType::NUMBER: std::cout << "num\n"; break;
+            case TokenType::ASSIGN: std::cout << "assign\n"; break;
+            case TokenType::PLUS: std::cout << "plus\n"; break;
+            case TokenType::MINUS: std::cout << "minus\n"; break;
+            case TokenType::STAR: std::cout << "star\n"; break;
+            case TokenType::SLASH: std::cout << "slash\n"; break;
+            case TokenType::RIGHT_PAREN: std::cout << "right_paren\n"; break;
+            case TokenType::LEFT_PAREN: std::cout << "left_paren\n"; break;
+
+            default: std::cout << " \n"; break;
+        }
     }
 
     parse(token1);
-
 ```
 ```bash
-    --- Token 1 ---
+        --- Token 1 ---
+        x type: ident
+        = type: assign
+        ( type: left_paren
+        10.0 type: num
+        + type: plus
+        10.0 type: num
+        ) type: right_paren
+        * type: star
+        2.5 type: num
+        + type: plus
+        5 type: num
+        / type: slash
+        6 type: num
 
-      x type: 0
-      = type: 10
-      ( type: 6
-      10.0 type: 1
-      + type: 2
-      10.0 type: 1
-      ) type: 7
-      * type: 4
-      2.5 type: 1
-      + type: 2
-      5 type: 1
-      / type: 5
-      6 type: 1 
-
-      output:
-      x = 50.8333
+        output:
+        x = 50.8333
 ```
