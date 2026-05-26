@@ -45,41 +45,36 @@ A tiny interpreter written in **C++** to explore **tokenization**, **lexer desig
     std::cout << "--- Token 1 ---\n";
     for(const Token& i : token1)
     {
-        std::cout << i.value << " type: ";
-        switch(i.token)
-        {
-            case TokenType::IDENT: std::cout << "ident\n"; break;
-            case TokenType::NUMBER: std::cout << "num\n"; break;
-            case TokenType::ASSIGN: std::cout << "assign\n"; break;
-            case TokenType::PLUS: std::cout << "plus\n"; break;
-            case TokenType::MINUS: std::cout << "minus\n"; break;
-            case TokenType::STAR: std::cout << "star\n"; break;
-            case TokenType::SLASH: std::cout << "slash\n"; break;
-            case TokenType::RIGHT_PAREN: std::cout << "right_paren\n"; break;
-            case TokenType::LEFT_PAREN: std::cout << "left_paren\n"; break;
+            case TokenType::IDENT:       std::cout  << "IDENT\n"; break;
+            case TokenType::NUMBER:      std::cout  << "number\n"; break;
+            case TokenType::ASSIGN:      std::cout  << "ASSIGN\n"; break;
+            case TokenType::PLUS:        std::cout  << "PLUS\n"; break;
+            case TokenType::MINUS:       std::cout  << "MINUS\n"; break;
+            case TokenType::STAR:        std::cout  << "STAR\n"; break;
+            case TokenType::SLASH:       std::cout  << "SLASH\n"; break;
+            case TokenType::RIGHT_PAREN: std::cout  << "RIGHT_PAREN\n"; break;
+            case TokenType::LEFT_PAREN:  std::cout  << "LEFT_PAREN\n"; break;
 
             default: std::cout << " \n"; break;
-        }
     }
 
     parse(token1);
 ```
-```bash
-        --- Token 1 ---
-        x type: ident
-        = type: assign
-        ( type: left_paren
-        10.0 type: num
-        + type: plus
-        10.0 type: num
-        ) type: right_paren
-        * type: star
-        2.5 type: num
-        + type: plus
-        5 type: num
-        / type: slash
-        6 type: num
+```--- Token 1 ---
+   x type: IDENT
+   = type: ASSIGN
+   ( type: LEFT_PAREN
+   10.0 type: number
+   + type: PLUS
+   10.0 type: number
+   ) type: RIGHT_PAREN
+   * type: STAR
+   2.5 type: number
+   + type: PLUS
+   5 type: number
+   / type: SLASH
+   6 type: numberbash
 
-        output:
-        x = 50.8333
+   output: 
+   x = 50.8333
 ```
