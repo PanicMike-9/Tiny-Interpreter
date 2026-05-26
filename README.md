@@ -50,7 +50,7 @@ A tiny interpreter written in **C++** to explore **tokenization**, **lexer desig
     parse(token1);
 
 ```
-```Bash
+```bash
     --- Token 1 ---
 
       x type: 0
