@@ -4,76 +4,87 @@
 #include <string>
 #include <iostream>
 
-int main()
+void display_token(const std::vector<Token>& input_token)
 {
-    std::string input1 = "x = (10.0 + 10.0) * 2.5 + 5 / 6";
-    std::vector<Token> token1 = tokenize(input1);
-    
-    // debugging to check correct token values and correct tokenization
-    std::cout << "--- Token 1 ---\n";
-    for(const Token& i : token1)
+    std::cout << "--- Token ---\n";
+    for(const Token& i : input_token)
     {
         std::cout << i.value << " type: ";
         switch(i.token)
         {
-            case TokenType::IDENT:       std::cout  << "IDENT\n"; break;
-            case TokenType::NUMBER:      std::cout  << "number\n"; break;
-            case TokenType::ASSIGN:      std::cout  << "ASSIGN\n"; break;
-            case TokenType::PLUS:        std::cout  << "PLUS\n"; break;
-            case TokenType::MINUS:       std::cout  << "MINUS\n"; break;
-            case TokenType::STAR:        std::cout  << "STAR\n"; break;
-            case TokenType::SLASH:       std::cout  << "SLASH\n"; break;
-            case TokenType::RIGHT_PAREN: std::cout  << "RIGHT_PAREN\n"; break;
-            case TokenType::LEFT_PAREN:  std::cout  << "LEFT_PAREN\n"; break;
+            case TokenType::IDENT:                
+                std::cout  << "IDENT\n"; break;
 
-            default: std::cout << " \n"; break;
+            case TokenType::NUMBER:               
+                std::cout  << "NUMBER\n"; break;
+
+            case TokenType::ASSIGN:               
+                std::cout  << "ASSIGN\n"; break;
+
+            case TokenType::PLUS:                 
+                std::cout  << "PLUS\n"; break;
+
+            case TokenType::MINUS:                
+                std::cout  << "MINUS\n"; break;
+
+            case TokenType::STAR:                 
+                std::cout  << "STAR\n"; break;
+
+            case TokenType::SLASH:                
+                std::cout  << "SLASH\n"; break;
+
+            case TokenType::RIGHT_PAREN:          
+                std::cout  << "RIGHT_PAREN\n"; break;
+
+            case TokenType::LEFT_PAREN:           
+                std::cout  << "LEFT_PAREN\n"; break;
+
+            case TokenType::GREATER:              
+                std::cout  << "GREATER\n"; break;
+
+            case TokenType::LESS:                 
+                std::cout  << "LESS\n"; break;
+
+            case TokenType::GREATER_EQUAL:        
+                std::cout  << "GREATER_EQUAL\n"; break;
+
+            case TokenType::LESS_EQUAL:           
+                std::cout  << "LESS_EQUAL\n"; break;
+
+            case TokenType::BANG_EQUAL:           
+                std::cout  << "BANG_EQUAL\n"; break;
+
+            default: 
+                std::cout << " \n"; break;
         }
     }
+}
+
+int main()
+{
+    std::string input1 = "x = (10.0 + 10.0) * 2.5 + 5 / 6";
+    std::vector<Token> token1 = tokenize(input1);
+    display_token(token1);
 
     std::string input2 = "y = x * (3 + 5) * 3 / 2";
     std::vector<Token> token2 = tokenize(input2);
-
-    std::cout << "--- Token 2 ---\n";
-    for(const Token& i : token2)
-    {
-        std::cout << i.value << " type: " << static_cast<int>(i.token) << '\n';
-    }
+    display_token(token2);
 
     std::string input3 = "z = (2.2 * 5.2) / x + y / 2";
     std::vector<Token> token3 = tokenize(input3);
-
-    std::cout << "--- Token 3 ---\n";
-    for(const Token& i : token3)
-    {
-        std::cout << i.value << " type: " << static_cast<int>(i.token) << '\n';
-    }
+    display_token(token3);
 
     std::string input4 = "a = 3 * 5 < 5 * 5";
     std::vector<Token> token4 = tokenize(input4);
-
-    std::cout << "--- Token 4 ---\n";
-    for(const Token& i : token4)
-    {
-        std::cout << i.value << " type: " << static_cast<int>(i.token) << '\n';
-    }
+    display_token(token4);
 
     std::string input5 = "b = 4 * 4 <= 4 * 4";
     std::vector<Token> token5 = tokenize(input5);
-
-    std::cout << "--- Token 5 ---\n";
-    for(const Token& i : token5)
-    {
-        std::cout << i.value << " type: " << static_cast<int>(i.token) << '\n';
-    }
+    display_token(token5);
 
     std::string input6 = "c = 4 * 5 != 2 * 2";
     std::vector<Token> token6 = tokenize(input6);
-
-    std::cout << "--- Token 6 ---\n";
-    for(const Token& i : token6)
-    {
-        std::cout << i.value << " type: " << static_cast<int>(i.token) << '\n';
-    }
+    display_token(token6);
 
     parse(token1); // 50.8333
     parse(token2); // 610
