@@ -9,7 +9,7 @@ void display_token(const std::vector<Token>& input_token)
     std::cout << "--- Token ---\n";
     for(const Token& i : input_token)
     {
-        std::cout << i.value << " type: ";
+        std::cout << i.value << " : ";
         switch(i.token)
         {
             case TokenType::IDENT:                
